@@ -1,6 +1,6 @@
 require 'rubygems' if RUBY_VERSION < '1.9'
 require 'sinatra'
-require 'lib/ahorcado'
+#require 'lib/ahorcado'
 
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
