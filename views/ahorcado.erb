@@ -1,0 +1,68 @@
+<html>
+<head><title></title>
+<style type="text/css">
+ body {
+	background-image:url('images/fondo2.jpg');
+ 	background-repeat:repeat-y;
+	color: #FFFFFF;	
+	}
+ </style>
+
+</head>
+
+<body>
+
+<center>
+<h1 style="color: #ffffff;">HangPhones</h1>
+
+
+<br>
+<span style="color: #fff;">
+
+<%= @@ahorcado.getAdivinanza() %>
+</span>
+
+<% if @@ahorcado.getPalabra() == "" %>
+Bienvenido <%= @@ahorcado.getJugador() %>
+
+<form action="palabra">
+	<table align="center">
+	<tr>
+		<td align="center"><span style="font-size: 1em;">Ingresa la palabra a adivinar<span/></td>
+	</tr><tr>
+		<td align="center"><input type="text" name="palabra" /></td>
+	</tr><tr>
+		<td align="center"><input type="submit" value="Iniciar Juego" /></td>
+	</table>
+</form>
+
+<% end %>
+
+<% if @@ahorcado.getPalabra() != "" %>
+<form action="letra">
+
+<table align="center">
+	<tr style="height=100px;">&nbsp;</tr>
+	<tr>&nbsp;</tr>
+	<tr>&nbsp;</tr>
+	<tr>&nbsp;</tr>		
+	<tr>
+		<td align="center"><span style="font-size: 1em;">Ingresa una letra<span/></td>
+	</tr><tr>
+		<td align="center"><input type="text" name="letra" maxlength="1" style="width:50px;" /></td>
+	</tr><tr>
+		<td align="center"><input type="submit" name="enviar" value="Enviar Letra" /></td>
+	</table>
+</form>
+
+<% end %>
+
+<br/>
+<b>
+<%= @@ahorcado.getMensaje() %>
+</b>
+</center>
+</body>
+
+
+</html>
