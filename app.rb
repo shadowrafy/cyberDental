@@ -1,29 +1,20 @@
 require 'rubygems' if RUBY_VERSION < '1.9'
 require 'sinatra'
-#require 'lib/ahorcado'
+require './lib/dentista'
 
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
 end
 
-get '/' do
-  @@ahorcado = Ahorcado.new()
-  @@ahorcado.setNick(params["nick"])
-  @@ahorcado.setTelefono(params["telefono"])
-
-  erb :ahorcado
+get '/dentistas/RegistroDentistas' do
+  erb :registroDentista
 end
 
-get '/letra' do
-  @@ahorcado.setLetra(params["letra"])
-  erb :ahorcado
+post '/dentistas/GuardaDentistas' do
+  @@dentista = Dentista.new()
+  erb :guardaDentista
 end
 
-get '/palabra' do
-  @@ahorcado.setPalabra(params["palabra"])
-  erb :ahorcado
-end
-
-get '/login' do
-  erb :login
+get '/dentistas/RegistroConsultorios' do
+  erb :registroConsultorio
 end

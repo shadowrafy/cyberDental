@@ -7,10 +7,6 @@ When /^Juego con la palabra "(.*?)"$/ do |value|
  click_button("iniciar")
 end
 
-Then /^veo "(.*?)"$/ do |text|
-  last_response.body.should =~ /#{text}/m
-end
-
 When /^Ingreso "(.*?)" y es "(.*?)"$/ do |field, value|
   fill_in(field, :with => value)
 end
