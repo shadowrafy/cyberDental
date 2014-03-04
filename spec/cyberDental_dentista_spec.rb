@@ -29,18 +29,13 @@ describe "Registro de Dentista" do
     dentista.grabar().should == true
   end
   
-  it "Detectar un dentista Duplicado" do
+  it "Detectar un dentista con email Duplicado" do
     dentista = Dentista.new()
-    dentista.setGenero("2")
-    dentista.setNombre("Melisa")
-    dentista.setApellidoPaterno("Trujillo")
-    dentista.setApellidoMaterno("Ceja")
     dentista.setEmail("mel@gmail.com")
+    dentista.grabar()
     con = Datos.new()
     coleccion = con.obtieneColeccion('dentistas')
-    datosJSON = dentista.dentista_json()
-    con.insertaColeccion(coleccion, datosJSON)
-    con.isDuplicado(coleccion, datosJSON).should == true
+    con.isDuplicado(coleccion, {"email" => "mel@gmail.com"}).should == true
   end
 
 end

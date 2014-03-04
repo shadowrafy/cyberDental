@@ -1,5 +1,4 @@
 require 'json'
-require 'datos'
 
 class Dentista
   def initialize()
@@ -8,10 +7,13 @@ class Dentista
     @apellidoMaterno = ""
     @genero = 1
     @email = ""
+    @cedula = ""
+    @usuario = ""
+    @password = ""
   end
 
   def dentista_json()
-    {'nombre' => @nombre, 'apellidoPaterno' => @apellidoPaterno, 'apellidoMaterno' => @apellidoMaterno, 'genero' => @genero}
+    {'nombre' => @nombre, 'apellidoPaterno' => @apellidoPaterno, 'apellidoMaterno' => @apellidoMaterno, 'genero' => @genero, 'email' => @email}
   end
 
   def getNombre()
@@ -54,6 +56,30 @@ class Dentista
     @email = email
   end
 
+  def getCedula()
+    @cedula
+  end
+
+  def setCedula(cedula)
+    @cedula = cedula
+  end
+
+  def getUsuario()
+    @usuario
+  end
+
+  def setUsuario(usuario)
+    @usuario = usuario
+  end
+
+  def getPassword()
+    @password
+  end
+
+  def setPassword(password)
+    @password = password
+  end
+
   def getGeneroTexto()
     genero = "Dr."
     if self.getGenero() == "2"
@@ -68,7 +94,16 @@ class Dentista
 
   def grabar()
     con = Datos.new()
-    if con.getDb == "fallo mongo" then false else con.insertaColeccion(con.obtieneColeccion('dentistas'), self.dentista_json()) end
+    coleccion = con.obtieneColeccion('dentistas')
+    if !con.isDuplicado(coleccion, {"email" => self.getEmail}) || self.getEmail == ""
+      if con.getErrorDatos == ""
+      con.insertaColeccion(coleccion, self.dentista_json())
+      else
+        puts con.getErrorDatos
+      end
+    else
+      puts "El email ya esta en uso"
+    end
   end
 
 end
