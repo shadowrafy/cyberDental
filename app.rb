@@ -12,6 +12,10 @@ end
 
 post '/dentistas/GuardaDentistas' do
   @@dentista = Dentista.new()
+  @@dentista.setNombre(params["nombreDentista"])
+  @@dentista.setApellidoPaterno(params["apellidoPaternoDentista"])
+  @@dentista.setApellidoMaterno(params["apellidoMaternoDentista"])
+  @@dentista.setGenero(params["generoDentista"])
   erb :guardaDentista
 end
 

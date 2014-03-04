@@ -16,6 +16,8 @@ And Lleno el campo "generoDentista" con "2"
 And Hago click en "registrarDentista"
 Then veo "Bienvenida Dra. Melisa Trujillo Ceja"
 
+Scenario: Ingresar correo electrónico inválido
+
 
 
 
